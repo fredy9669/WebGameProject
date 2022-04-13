@@ -17,8 +17,10 @@ function showMenu(){
 
 function showSubmenu(){
 	document.getElementById('submenuID').style.width = "200px";
+	document.getElementById('menuItemsID').style.display = "inline";
 }
 
 function hideSubmenu(){
 	document.getElementById('submenuID').style.width = "0px";
+	document.getElementById('menuItemsID').style.display = "none";
 }
