@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+	<head>
+		<meta charset ="UTF -8" />
+		<title>Ferdinand's car quiz</title>		
+		<link rel="stylesheet" href="quizCSS.css">
+		<script src = "quizJS.js"></script>
+	</head>
+	
+	<body>
+		<header>
+			Welcome to the car quiz. Good luck and have fun!
+		</header>
+		
+		<main>
+			<p>
+				ABOUT SECTION
+			</p>
+		</main>
+		
+		<nav id = "drawer">
+			<button id = "menubtnID" class = "menubtn" onclick = "showMenu()"> ☰ </button>		
+			
+			<ul class = "menuItems" id = "menuItemsID">
+				<li><a href = "homepage.html" onmouseover = "hideSubmenu()">ABOUT</a></li>
+				<li><a href = "quiz.html" onmouseover = "showSubmenu()">QUIZ</a></li>
+				<li><a href = "contact.html" onmouseover = "hideSubmenu()">CONTACT</a></li>
+			</ul>
+		</nav>
+		
+		<ul class = "submenu" id = "submenuID"  onmouseleave = "hideSubmenu()">
+			<li><a href = "practice.html">PRACTICE</a></li>
+			<li><a href = "startquiz.html">START QUIZ</a></li>
+		</ul>
+		
+		<footer>
+			<p style = "float: left; margin: 20px">
+				Created by Ferdinand Havlik
+			</p>
+			
+			<a href = "https://www.facebook.com/" target="_blank"><img src = "facebook.png" alt = "facebook" width = "40px" height = "40px" style = "float:right; margin:10px 10px; cursor: pointer;"></a>
+			<a href = "https://www.twitter.com/" target="_blank"><img src = "twitter.png" alt = "twitter" width = "40px" height = "40px" style = "float:right; margin:10px 10px; cursor: pointer;"></a>
+			<a href = "https://github.com/fredy9669" target="_blank"><img src = "github.jpg" alt = "github" width = "40px" height = "40px" style = "float:right; margin:10px 10px; cursor: pointer;"></a>
+			
+		</footer>
+	</body>
+
+</html>
