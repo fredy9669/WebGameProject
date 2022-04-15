@@ -2,6 +2,7 @@ var statusMenu = false;
 
 function showMenu(){
 	if(statusMenu == true){
+		document.getElementById('mainID').style.zIndex = "-1";
 		document.getElementById('mainID').style.opacity = "1";
 		document.getElementById('headerID').style.opacity = "1";
 		document.getElementById('drawer').style.width = "60px";
@@ -10,6 +11,7 @@ function showMenu(){
 		hideSubmenu();		
 		return;
 	}else if(statusMenu == false){
+		document.getElementById('mainID').style.zIndex = "0";
 		document.getElementById('mainID').style.opacity = "0.2";
 		document.getElementById('headerID').style.opacity = "0.2";
 		document.getElementById('drawer').style.width = "200px";
