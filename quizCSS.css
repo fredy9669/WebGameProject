@@ -119,11 +119,17 @@ nav {
 	justify-content: center;
 }
 
-.flexContainer div{
-  flex-basis: 250px; /* explanation below */
+.flexContainer a{
+  flex-basis: 250px;
   margin: 5px;
   height: 250px;  
+  transition: 0.7s;
 }
+
+.flexContainer a:hover{
+	transform: scale(1.2);
+}
+
 
 .flexContainer2{
 	display: flex;
@@ -131,8 +137,95 @@ nav {
 	justify-content: center;
 }
 
-.flexContainer2 div{
-  flex-basis: 250px; /* explanation below */
+.flexContainer2 a{
+  flex-basis: 250px; 
   margin: 5px;
   height: 250px;  
+  transition: 0.7s;
+}
+
+.flexContainer2 a:hover{
+	transform: scale(1.2);
+}
+
+.quizBody{
+	text-align: center;
+	border: 1px solid black;
+	margin: 10px;
+	padding: 220px;
+	background-color: white;
+	position: relative;
+	
+}
+
+#mainID{
+	background-color: white;
+	display: inline;
+	padding: 5px;
+	margin: 5px;
+}
+
+.quizHeader{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	margin: 10px 10px 10px;
+}
+
+.quizHeader div{
+	flex-basis: 350px;
+	border: 1px solid black;
+	margin: 10px;
+	height: 45px;
+	font-size: 40px;
+}
+
+#timer{
+	text-align: left;
+	
+}
+
+#score{
+	text-align: center;
+}
+
+#questionnumber{
+	text-align: right;
+}
+
+#buttonQuiz{
+	border: 1px solid black;
+	background-color: black;
+	color: white;
+	height: 45px;
+	width: 350px;
+	font-size: 40px;
+	cursor: pointer;
+	margin: 10px;
+}
+
+#buttonQuiz:hover{
+	color: black;
+	background-color: green;
+}
+
+#question{
+	text-align: left;
+	font-size: 25px;
+	margin: 30px;
+	border: 1px solid black;
+}
+
+#quizanswers li{
+	text-align: left;
+	border: 1px solid black;
+	list-style-type: upper-latin;
+	margin: 30px;
+	font-size: 25px;
+	cursor: pointer;
+	transition: 0.5s;
+}
+
+#quizanswers li:hover{
+	transform: scale(1.05);
 }
