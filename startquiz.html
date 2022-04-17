@@ -15,8 +15,7 @@
 		
 		<main id = "mainID">
 			
-			<button id = "buttonQuiz" onclick = "quiztimer()">START</button>
-			<button id = "showbutton" onclick = "show()">question</button>
+			<button id = "buttonQuiz" onclick = "quiztimer();counterscore()">START</button>
 			
 			<div class ="quizHeader">
 				<div id = "timer"> </div>
@@ -27,10 +26,10 @@
 			<div id = "question">Question presented here:</div>
 			
 			<ul id = "quizanswers">
-				<li id = "answer1">Option 1 for answering the question</li>
-				<li id = "answer2">Option 2 for answering the question</li>
-				<li id = "answer3">Option 3 for answering the question</li>
-				<li id = "answer4">Option 4 for answering the question</li>
+				<li id = "answer1" onclick = "quiztimer();counterscore()">Option 1 for answering the question</li>
+				<li id = "answer2" onclick = "quiztimer();counterscore()">Option 2 for answering the question</li>
+				<li id = "answer3" onclick = "quiztimer();counterscore()">Option 3 for answering the question</li>
+				<li id = "answer4" onclick = "quiztimer();counterscore()">Option 4 for answering the question</li>
 			</ul>
 			
 			

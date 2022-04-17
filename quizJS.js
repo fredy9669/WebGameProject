@@ -33,29 +33,41 @@ function hideSubmenu(){
 
 
 
-var status = 0; //status 0 = no game is on; status 1 = game is on; status 2 = game finished
+var statusquiz = 0; //status 0 = no game is on; status 1 = game finished
 
-var progress = 0;
+var progress = 1;
 
 var timerrun = 0;
 
 var timer = 30;
 
 function quiztimer(){
+	timerstop();
+	timerstart();
+	if(statusquiz == 0){
+		document.getElementById("buttonQuiz").innerHTML = "NEXT";
+	}		
+	if(statusquiz == 1){
+		document.getElementById("mainID").style.display = "none";
+	}	
 	document.getElementById("score").innerHTML = progress;
 	
 	if(timer < 30 && timer > 0){
-			clearInterval(int);
 			timer = 30;
 			quiztimer();
 			return;
 	}	
 	
-		
-	if(status == 0){
-		document.getElementById("buttonQuiz").innerHTML = "NEXT";
-	}		
+	show();
 	
+	if(progress == 10){
+		document.getElementById("buttonQuiz").innerHTML = "FINISH";
+		statusquiz = 1;
+		return;
+	}
+}
+
+function timerstart(){
 	int = setInterval(function(){ 
 		if(0 < timer){
 			document.getElementById("timer").innerHTML = timer;
@@ -65,11 +77,15 @@ function quiztimer(){
 			
 		}
 	}, 1000);
-	
+}
+
+
+function timerstop(){
+	clearInterval(int);
 }
 
 let questionsasked = [];
-let limit = 10;
+let limit = 62;
 
 function show(){
 	
@@ -94,6 +110,9 @@ function show(){
 	document.getElementById("answer4").innerHTML = questions[random].answers[3].option;	
 }
 
+function counterscore(){
+	progress++;
+}
 
 let questions = [
    {
@@ -187,345 +206,471 @@ let questions = [
        ]
    },
    {
-       question: "",
+       question: "When was the Company for the Preparation of the German Volkswagen Ltd. established?",
        answers: [
-           {option: "", answer: false},
-           {option: "", answer: false},
-		   {option: "", answer: true},
-		   {option: "", answer: false},
+           {option: "May 28, 1940", answer: false},
+           {option: "May 28, 1938", answer: false},
+		   {option: "May 28, 1937", answer: true},
+		   {option: "May 28, 1932", answer: false},
        ]
    },
    {
-       question: "",
+       question: "When was the VW Type 2 (Transporter) model added to lineup?",
        answers: [
-           {option: "", answer: false},
-           {option: "", answer: false},
-		   {option: "", answer: false},
-		   {option: "", answer: true},
+           {option: "1951", answer: false},
+           {option: "1958", answer: false},
+		   {option: "1953", answer: false},
+		   {option: "1950", answer: true},
        ]
    },
       {
-       question: "",
+       question: "What year did VW Beetle go in production?",
        answers: [
-           {option: "", answer: true},
-           {option: "", answer: false},
-		   {option: "", answer: false},
-		   {option: "", answer: false},
+           {option: "1938", answer: true},
+           {option: "1932", answer: false},
+		   {option: "1928", answer: false},
+		   {option: "1948", answer: false},
        ]
    },
    {
-       question: "",
+       question: "How fast does VW IDR accelerate from 0-100 kph?",
        answers: [
-           {option: "", answer: false},
-           {option: "", answer: true},
-		   {option: "", answer: false},
-		   {option: "", answer: false},
+           {option: "2,00s", answer: false},
+           {option: "2,78s", answer: true},
+		   {option: "2,25s", answer: false},
+		   {option: "3,25s", answer: false},
        ]
    },
    {
-       question: "",
+       question: "How many VW Golfs have been built as of October 2019?",
        answers: [
-           {option: "", answer: false},
-           {option: "", answer: false},
-		   {option: "", answer: true},
-		   {option: "", answer: false},
+           {option: "More than 95 million", answer: false},
+           {option: "More than 85 million", answer: false},
+		   {option: "More than 35 million", answer: true},
+		   {option: "More than 55 million", answer: false},
        ]
    },
    {
-       question: "",
+       question: "What does Volkswagen translate to?",
        answers: [
-           {option: "", answer: false},
-           {option: "", answer: false},
-		   {option: "", answer: false},
-		   {option: "", answer: true},
+           {option: "fast car", answer: false},
+           {option: "everyone's car", answer: false},
+		   {option: "god's car", answer: false},
+		   {option: "people's car", answer: true},
        ]
    },
       {
-       question: "",
+       question: "Where is the headquarters of VW?",
        answers: [
-           {option: "", answer: true},
-           {option: "", answer: false},
-		   {option: "", answer: false},
-		   {option: "", answer: false},
+           {option: "Wolfsburg, Germany", answer: true},
+           {option: "Berlin, Germany", answer: false},
+		   {option: "Frankfurt, Germany", answer: false},
+		   {option: "Stuttgart, Germany", answer: false},
        ]
    },
    {
-       question: "",
+       question: "When was the VW Passat introduced?",
        answers: [
-           {option: "", answer: false},
-           {option: "", answer: true},
-		   {option: "", answer: false},
-		   {option: "", answer: false},
+           {option: "1975", answer: false},
+           {option: "1973", answer: true},
+		   {option: "1978", answer: false},
+		   {option: "1983", answer: false},
        ]
    },
    {
-       question: "",
+       question: "Who won the WRC championship four times in a row with VW Polo R WRC?",
        answers: [
-           {option: "", answer: false},
-           {option: "", answer: false},
-		   {option: "", answer: true},
-		   {option: "", answer: false},
+           {option: "Sebastien Loeb & Pedro Ingrassia", answer: false},
+           {option: "Sebastien Ogier & Francisco Ingrassia", answer: false},
+		   {option: "Sebastien Ogier & Julien Ingrassia", answer: true},
+		   {option: "Sebastien Loeb & Julio Ingrassia", answer: false},
        ]
    },
    {
-       question: "",
+       question: "When was the Ferrari 166 MM launched at Turing Motor show?",
        answers: [
-           {option: "", answer: false},
-           {option: "", answer: false},
-		   {option: "", answer: false},
-		   {option: "", answer: true},
+           {option: "1942", answer: false},
+           {option: "1946", answer: false},
+		   {option: "1958", answer: false},
+		   {option: "1948", answer: true},
        ]
    },
       {
-       question: "",
+       question: "What year did Marzotto win with the 195S A Red Mille Miglia?",
        answers: [
-           {option: "", answer: true},
-           {option: "", answer: false},
-		   {option: "", answer: false},
-		   {option: "", answer: false},
+           {option: "1950", answer: true},
+           {option: "1940", answer: false},
+		   {option: "1955", answer: false},
+		   {option: "1952", answer: false},
        ]
    },
    {
-       question: "",
+       question: "When did Ascari win Ferrari's first F1 world title?",
        answers: [
-           {option: "", answer: false},
-           {option: "", answer: true},
-		   {option: "", answer: false},
-		   {option: "", answer: false},
+           {option: "1962", answer: false},
+           {option: "1952", answer: true},
+		   {option: "1972", answer: false},
+		   {option: "1957", answer: false},
        ]
    },
    {
-       question: "",
+       question: "What iconic car was unveiled in 1962 by Ferrari?",
        answers: [
-           {option: "", answer: false},
-           {option: "", answer: false},
-		   {option: "", answer: true},
-		   {option: "", answer: false},
+           {option: "225 GTO", answer: false},
+           {option: "240 GTO", answer: false},
+		   {option: "250 GTO", answer: true},
+		   {option: "280 GTO", answer: false},
        ]
    },
    {
-       question: "",
+       question: "When did Enzo Ferrari die?",
        answers: [
-           {option: "", answer: false},
-           {option: "", answer: false},
-		   {option: "", answer: false},
-		   {option: "", answer: true},
+           {option: "11th August 1985", answer: false},
+           {option: "14th August 1987", answer: false},
+		   {option: "13th August 1989", answer: false},
+		   {option: "14th August 1988", answer: true},
        ]
    },
       {
-       question: "",
+       question: "Who became F1 champion in Brazil in 2007?",
        answers: [
-           {option: "", answer: true},
-           {option: "", answer: false},
-		   {option: "", answer: false},
-		   {option: "", answer: false},
+           {option: "Kimi Raikkonen", answer: true},
+           {option: "Fernando Alonso", answer: false},
+		   {option: "Charles Leclerc", answer: false},
+		   {option: "Lewis Hamilton", answer: false},
        ]
    },
    {
-       question: "",
+       question: "Who are the current Ferrari F1 drivers?",
        answers: [
-           {option: "", answer: false},
-           {option: "", answer: true},
-		   {option: "", answer: false},
-		   {option: "", answer: false},
+           {option: "Charlses Leclers and Juan Carlos", answer: false},
+           {option: "Charlses Leclers and Carlos Sainz", answer: true},
+		   {option: "Stephan Leclers and Fernando Alonso", answer: false},
+		   {option: "Lewis Hamilton and Kimi Raikkonen", answer: false},
        ]
    },
    {
-       question: "",
+       question: "How many F1 driver champion titles does Lewis Hamilton have?",
        answers: [
-           {option: "", answer: false},
-           {option: "", answer: false},
-		   {option: "", answer: true},
-		   {option: "", answer: false},
+           {option: "8", answer: false},
+           {option: "9", answer: false},
+		   {option: "7", answer: true},
+		   {option: "6", answer: false},
        ]
    },
    {
-       question: "",
+       question: "Who has the highest number of fastest laps in F1?",
        answers: [
-           {option: "", answer: false},
-           {option: "", answer: false},
-		   {option: "", answer: false},
-		   {option: "", answer: true},
+           {option: "Michael Buemi in 66 races ", answer: false},
+           {option: "Thomas Schumacher in 78 races ", answer: false},
+		   {option: "Michael Schumacher in 90 races ", answer: false},
+		   {option: "Michael Schumacher in 77 races ", answer: true},
        ]
    },
       {
-       question: "",
+       question: "Who is the first driver to break triple figures in amount of races won in F1?",
        answers: [
-           {option: "", answer: true},
-           {option: "", answer: false},
-		   {option: "", answer: false},
-		   {option: "", answer: false},
+           {option: "Lewis Hamilton", answer: true},
+           {option: "Fernando Alons", answer: false},
+		   {option: "Michael Schumacher", answer: false},
+		   {option: "Michael Fasbender", answer: false},
        ]
    },
    {
-       question: "",
+       question: "How many drivers have died while testing, practising, qualifying or racing F1?",
        answers: [
-           {option: "", answer: false},
-           {option: "", answer: true},
-		   {option: "", answer: false},
-		   {option: "", answer: false},
+           {option: "50", answer: false},
+           {option: "52", answer: true},
+		   {option: "60", answer: false},
+		   {option: "102", answer: false},
        ]
    },
    {
-       question: "",
+       question: "What year did Ayrton Senna die?",
        answers: [
-           {option: "", answer: false},
-           {option: "", answer: false},
-		   {option: "", answer: true},
-		   {option: "", answer: false},
+           {option: "1995", answer: false},
+           {option: "1996", answer: false},
+		   {option: "1994", answer: true},
+		   {option: "1998", answer: false},
        ]
    },
    {
-       question: "",
+       question: "What brand is the most valuable in F1?",
        answers: [
-           {option: "", answer: false},
-           {option: "", answer: false},
-		   {option: "", answer: false},
-		   {option: "", answer: true},
+           {option: "Williams", answer: false},
+           {option: "Mercedes", answer: false},
+		   {option: "Red Bull", answer: false},
+		   {option: "Ferrari", answer: true},
        ]
    },
       {
-       question: "",
+       question: "How fast can F1 car accelerate from 0 to 300 km/h?",
        answers: [
-           {option: "", answer: true},
-           {option: "", answer: false},
-		   {option: "", answer: false},
-		   {option: "", answer: false},
+           {option: "10.6 s", answer: true},
+           {option: "6.6 s", answer: false},
+		   {option: "8.6 s", answer: false},
+		   {option: "12.6 s", answer: false},
        ]
    },
    {
-       question: "",
+       question: "How much does it cost to build a F1 car?",
        answers: [
-           {option: "", answer: false},
-           {option: "", answer: true},
-		   {option: "", answer: false},
-		   {option: "", answer: false},
+           {option: "£188,32 million", answer: false},
+           {option: "£14,58 million", answer: true},
+		   {option: "£11,24 million", answer: false},
+		   {option: "£1,99 million", answer: false},
        ]
    },
    {
-       question: "",
+       question: "Who is the supplier of F1 tyres?",
        answers: [
-           {option: "", answer: false},
-           {option: "", answer: false},
-		   {option: "", answer: true},
-		   {option: "", answer: false},
+           {option: "Michelin", answer: false},
+           {option: "Yokohama", answer: false},
+		   {option: "Pirelli", answer: true},
+		   {option: "Kuzmo", answer: false},
        ]
    },
    {
-       question: "",
+       question: "What did BMW originally built?",
        answers: [
-           {option: "", answer: false},
-           {option: "", answer: false},
-		   {option: "", answer: false},
-		   {option: "", answer: true},
+           {option: "Motorbike Engines", answer: false},
+           {option: "Boat Engines", answer: false},
+		   {option: "Bottles", answer: false},
+		   {option: "Plane Engines", answer: true},
        ]
    },
       {
-       question: "",
+       question: "What does BMW mean?",
        answers: [
-           {option: "", answer: true},
-           {option: "", answer: false},
-		   {option: "", answer: false},
-		   {option: "", answer: false},
+           {option: "Bayerische Motoren Werke", answer: true},
+           {option: "Bayerische Motoren Wagen", answer: false},
+		   {option: "Bayerische Master Werke", answer: false},
+		   {option: "Bayerische Motoren Wunster", answer: false},
        ]
    },
    {
-       question: "",
+       question: "When was BMW founded?",
        answers: [
-           {option: "", answer: false},
-           {option: "", answer: true},
-		   {option: "", answer: false},
-		   {option: "", answer: false},
+           {option: "1918", answer: false},
+           {option: "1916", answer: true},
+		   {option: "1926", answer: false},
+		   {option: "1912", answer: false},
        ]
    },
    {
-       question: "",
+       question: "What do the colours in BMW logo represent?",
        answers: [
-           {option: "", answer: false},
-           {option: "", answer: false},
-		   {option: "", answer: true},
-		   {option: "", answer: false},
+           {option: "Stuttgart", answer: false},
+           {option: "Berlin", answer: false},
+		   {option: "Bavaria", answer: true},
+		   {option: "Hesse", answer: false},
        ]
    },
    {
-       question: "",
+       question: "When did BMW make its first electric car?",
        answers: [
-           {option: "", answer: false},
-           {option: "", answer: false},
-		   {option: "", answer: false},
-		   {option: "", answer: true},
+           {option: "1952", answer: false},
+           {option: "1978", answer: false},
+		   {option: "1982", answer: false},
+		   {option: "1972", answer: true},
        ]
    },
       {
-       question: "",
+       question: "How was the first car made by BMW called?",
        answers: [
-           {option: "", answer: true},
-           {option: "", answer: false},
-		   {option: "", answer: false},
-		   {option: "", answer: false},
+           {option: "Dixi", answer: true},
+           {option: "Pixi", answer: false},
+		   {option: "Dissi", answer: false},
+		   {option: "Fimi", answer: false},
        ]
    },
    {
-       question: "",
+       question: "How many cylinders did the Ford Model A have?",
        answers: [
-           {option: "", answer: false},
-           {option: "", answer: true},
-		   {option: "", answer: false},
-		   {option: "", answer: false},
+           {option: "1", answer: false},
+           {option: "2", answer: true},
+		   {option: "6", answer: false},
+		   {option: "4", answer: false},
        ]
    },
    {
-       question: "",
+       question: "Who founded Ford?",
        answers: [
-           {option: "", answer: false},
-           {option: "", answer: false},
-		   {option: "", answer: true},
-		   {option: "", answer: false},
+           {option: "Peter Ford", answer: false},
+           {option: "Henry Benz", answer: false},
+		   {option: "Henry Ford", answer: true},
+		   {option: "Faust Ford", answer: false},
        ]
    },
    {
-       question: "",
+       question: "Where is Ford headquarters?",
        answers: [
-           {option: "", answer: false},
-           {option: "", answer: false},
-		   {option: "", answer: false},
-		   {option: "", answer: true},
+           {option: "Dearborn, Florida", answer: false},
+           {option: "Dearborn, New York", answer: false},
+		   {option: "Dearborn, Wisconsin", answer: false},
+		   {option: "Dearborn, Michigan", answer: true},
        ]
    },
       {
-       question: "",
+       question: "When was Ford Model T introduced?",
        answers: [
-           {option: "", answer: true},
-           {option: "", answer: false},
-		   {option: "", answer: false},
-		   {option: "", answer: false},
+           {option: "1908", answer: true},
+           {option: "1800", answer: false},
+		   {option: "1918", answer: false},
+		   {option: "1900", answer: false},
        ]
    },
    {
-       question: "",
+       question: "Where was Ford's first international sales branch opened in 1908?",
        answers: [
-           {option: "", answer: false},
-           {option: "", answer: true},
-		   {option: "", answer: false},
-		   {option: "", answer: false},
+           {option: "Budapest", answer: false},
+           {option: "Paris", answer: true},
+		   {option: "London", answer: false},
+		   {option: "Berlin", answer: false},
        ]
    },
    {
-       question: "",
+       question: "Who constructed the first considerable as a very first true motorcycle?",
        answers: [
-           {option: "", answer: false},
-           {option: "", answer: false},
-		   {option: "", answer: true},
-		   {option: "", answer: false},
+           {option: "Helmut Daimler", answer: false},
+           {option: "Gottlieb Kopf", answer: false},
+		   {option: "Gottlieb Daimler", answer: true},
+		   {option: "Karl Benz", answer: false},
        ]
    },
    {
-       question: "",
+       question: "At what year did Karl Benz patented hiw three-wheeled Motorwagen?",
        answers: [
-           {option: "", answer: false},
-           {option: "", answer: false},
-		   {option: "", answer: false},
-		   {option: "", answer: true},
+           {option: "1889", answer: false},
+           {option: "1836", answer: false},
+		   {option: "1888", answer: false},
+		   {option: "1886", answer: true},
+       ]
+   },
+      {
+       question: "When did Mercedes-Benz make a first hybrid vehicle?",
+       answers: [
+           {option: "1906", answer: true},
+           {option: "1900", answer: false},
+		   {option: "1910", answer: false},
+		   {option: "1928", answer: false},
+       ]
+   },
+   {
+       question: "What was the first car in Nepal?",
+       answers: [
+           {option: "Mercedes-Benz", answer: false},
+           {option: "Opel", answer: true},
+		   {option: "Ferrari", answer: false},
+		   {option: "VW", answer: false},
+       ]
+   },
+   {
+       question: "In how many countries are Mercedes-Benz vehicles produced?",
+       answers: [
+           {option: "20 countries", answer: false},
+           {option: "60 countries", answer: false},
+		   {option: "30 countries", answer: true},
+		   {option: "26 countries", answer: false},
+       ]
+   },
+   {
+       question: "Who founded Lamborghini?",
+       answers: [
+           {option: "Enzo Ferrari", answer: false},
+           {option: "Lamorghini Maxus", answer: false},
+		   {option: "Max Ferrucio", answer: false},
+		   {option: "Ferruccio Lamborghini", answer: true},
+       ]
+   },
+      {
+       question: "When was Lamborghini founded?",
+       answers: [
+           {option: "1963", answer: true},
+           {option: "1966", answer: false},
+		   {option: "1973", answer: false},
+		   {option: "1968", answer: false},
+       ]
+   },
+   {
+       question: "What was originally produced by Lamborghini?",
+       answers: [
+           {option: "boats", answer: false},
+           {option: "tractors", answer: true},
+		   {option: "bikes", answer: false},
+		   {option: "cars", answer: false},
+       ]
+   },
+   {
+       question: "What was the first model by Lamborghini to be named after a bull?",
+       answers: [
+           {option: "Lamborghini Urus", answer: false},
+           {option: "Lamborghini Murcielago", answer: false},
+		   {option: "Lamborghini Miura", answer: true},
+		   {option: "Lamborghini Galardo", answer: false},
+       ]
+   },
+   {
+       question: "What was the first Lamborghini SUV?",
+       answers: [
+           {option: "Huracan", answer: false},
+           {option: "LM009", answer: false},
+		   {option: "Urus", answer: false},
+		   {option: "LM002", answer: true},
+       ]
+   },
+      {
+       question: "Who owns Lamborghini?",
+       answers: [
+           {option: "VW Group", answer: true},
+           {option: "BMW", answer: false},
+		   {option: "Daimler", answer: false},
+		   {option: "Rimac", answer: false},
+       ]
+   },
+   {
+       question: "What did Honda originally manufacture?",
+       answers: [
+           {option: "planes", answer: false},
+           {option: "bicycles", answer: true},
+		   {option: "tractors", answer: false},
+		   {option: "helicopters", answer: false},
+       ]
+   },
+   {
+       question: "Which was the first foreign vehicle made in the US?",
+       answers: [
+           {option: "Toyota Prius", answer: false},
+           {option: "Opel Meriva", answer: false},
+		   {option: "Honda Accord", answer: true},
+		   {option: "Ferrari F355", answer: false},
+       ]
+   },
+   {
+       question: "What is the most succesfull engine maker in the Indy 500?",
+       answers: [
+           {option: "Lamborghini", answer: false},
+           {option: "Ferrari", answer: false},
+		   {option: "Opel", answer: false},
+		   {option: "Honda", answer: true},
+       ]
+   },
+   {
+       question: "Which was the first four-wheel drive car ever produced and sold?",
+       answers: [
+           {option: "Toyota Prius", answer: false},
+           {option: "Opel Meriva", answer: false},
+		   {option: "Honda Prelude", answer: true},
+		   {option: "Ferrari F355", answer: false},
+       ]
+   },
+   {
+       question: "Where is Honda's headquarters?",
+       answers: [
+           {option: "Osaka, Japan", answer: false},
+           {option: "Ukila, Japan", answer: false},
+		   {option: "Sakamoto, Japan", answer: false},
+		   {option: "Tokyo, Japan", answer: true},
        ]
    }
 ]
