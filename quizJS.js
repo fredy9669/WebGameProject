@@ -23,34 +23,28 @@ function showMenu(){
 
 function showSubmenu(){
 	document.getElementById('submenuID').style.width = "200px";
-	document.getElementById('submenu').style.display = "inline";
+	document.getElementById('submenuID').style.visibility = "visible";
 }
 
 function hideSubmenu(){
 	document.getElementById('submenuID').style.width = "0px";
-	document.getElementById('submenu').style.display = "none";
+	document.getElementById('submenuID').style.visibility = "hidden";
 }
 
 
 
 var statusquiz = 0; //status 0 = no game is on; status 1 = game finished
+var progress = 1; 	//counter of which question are you at
+var timerrun = 0;	//status of counter, 1 = counter is running
+var timer = 25; 	//amount of seconds
 
-var progress = 1;
-
-var timerrun = 0;
-
-var timer = 25;
-
+/* Main function, decides on what to do depending in which part of quiz we are */
 function quiztimer(clicked_id){
-	//console.log("statusquiz "+statusquiz);
-	//console.log("progress "+progress);
-	//console.log("timerrun "+timerrun);
-	//console.log("timer "+timer);
-	//console.log("asked "+questionsasked.length);
-		
+	console.log(statusquiz);
 
 	if(statusquiz == 1){
-		progress = 1;
+		document.getElementById("buttonQuiz").innerHTML = "START";
+		clearInterval(int);
 		statusquiz = 0;
 		return;
 	}	
@@ -75,13 +69,17 @@ function quiztimer(clicked_id){
 	
 	if(progress >= 10){
 		document.getElementById("buttonQuiz").innerHTML = "FINISH";
-		statusquiz = 1;		
+		statusquiz = 1;	
+		progress = 0;
+		statusquiz = 1;
+		questionsasked = [];	
 	}
 	
 	show(clicked_id);
 
 }
 
+/* Starts a timer to countdown the time */
 function timerstart(){
 	int = setInterval(function(){ 
 		if(0 < timer){
@@ -95,17 +93,19 @@ function timerstart(){
 }
 
 
-let questionsasked = [];
-let limit = 62;
+let questionsasked = []; 	//list of questions already asked
+let limit = 62; 			//amount of questions
+var correctanswerID = 0;    //ID of the correct answer
 
-
-
+/* Main function to show the questions */
 function show(clicked_id){
 
+	if((clicked_id-1) == correctanswerID){
+		console.log("Right answer");
+	}
 	var random = Math.floor(Math.random() * limit);
-	console.log(random);
-	console.log(clicked_id);
-		
+	
+
 
 	if(questionsasked.length == limit){
 		return;
@@ -124,37 +124,25 @@ function show(clicked_id){
 	document.getElementById("3").innerHTML = questions[random].answers[2].option;	
 	document.getElementById("4").innerHTML = questions[random].answers[3].option;	
 	
+
 	
 	for(var i = 0; i < 4; i++){
-		if(questions[random].answers[i].answer == true)
+	if(questions[random].answers[i].answer == true)
 		{
-			console.log("right answer is " + i);
+			correctanswerID = i;
+			//console.log(i);
 		}
 	}
-	console.log("you clicked " + (clicked_id - 1));
 	
 	counterscore();	
-	
-	
-	
 }
 
-	
-	/*var reply_click = function()
-	{
-		//console.log("Button clicked, id "+this.id+", text"+this.innerHTML);
-		//console.log(questions[random].answers[this.id-1].answer);
-	}
-	document.getElementById('1').onclick = reply_click;
-	document.getElementById('2').onclick = reply_click;
-	document.getElementById('3').onclick = reply_click;
-	document.getElementById('4').onclick = reply_click;*/
-	
-
+/* Counter to know how many questions were asked */
 function counterscore(){
 	progress++;
 }
 
+/* List of all the questions */
 let questions = [
    {
        question: "What is the horsepower of Ferrari F50?",
