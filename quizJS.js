@@ -39,59 +39,74 @@ var progress = 1;
 
 var timerrun = 0;
 
-var timer = 30;
+var timer = 25;
 
-function quiztimer(){
-	timerstop();
-	timerstart();
+function quiztimer(clicked_id){
+	//console.log("statusquiz "+statusquiz);
+	//console.log("progress "+progress);
+	//console.log("timerrun "+timerrun);
+	//console.log("timer "+timer);
+	//console.log("asked "+questionsasked.length);
+		
+
+	if(statusquiz == 1){
+		progress = 1;
+		statusquiz = 0;
+		return;
+	}	
+	if(timerrun == 1){
+		clearInterval(int);
+		timer = 25;
+	}		
+	if(timer == 25){
+		timerstart();
+		timerrun = 1;
+	}else{
+		clearInterval(int);
+	}
+	
 	if(statusquiz == 0){
 		document.getElementById("buttonQuiz").innerHTML = "NEXT";
+		document.getElementById("quizanswers").style.visibility = "visible";
+		document.getElementById("question").style.visibility = "visible";
 	}		
-	if(statusquiz == 1){
-		document.getElementById("mainID").style.display = "none";
-	}	
-	document.getElementById("score").innerHTML = progress;
+
+	document.getElementById("questionnumber").innerHTML = progress;	
 	
-	if(timer < 30 && timer > 0){
-			timer = 30;
-			quiztimer();
-			return;
-	}	
-	
-	show();
-	
-	if(progress == 10){
+	if(progress >= 10){
 		document.getElementById("buttonQuiz").innerHTML = "FINISH";
-		statusquiz = 1;
-		return;
+		statusquiz = 1;		
 	}
+	
+	show(clicked_id);
+
 }
 
 function timerstart(){
 	int = setInterval(function(){ 
 		if(0 < timer){
-			document.getElementById("timer").innerHTML = timer;
+			document.getElementById("timer").innerHTML = timer + " s";
 			timer--;
 		}else{
-			document.getElementById("timer").innerHTML = "TIMEUP";
-			
+			document.getElementById("timer").innerHTML = "TIMEUP";	
+			quiztimer();
 		}
 	}, 1000);
 }
 
 
-function timerstop(){
-	clearInterval(int);
-}
-
 let questionsasked = [];
 let limit = 62;
 
-function show(){
-	
+
+
+function show(clicked_id){
+
 	var random = Math.floor(Math.random() * limit);
 	console.log(random);
-	
+	console.log(clicked_id);
+		
+
 	if(questionsasked.length == limit){
 		return;
 	}
@@ -104,11 +119,37 @@ function show(){
 	}
 
 	document.getElementById("question").innerHTML = questions[random].question;
-	document.getElementById("answer1").innerHTML = questions[random].answers[0].option;
-	document.getElementById("answer2").innerHTML = questions[random].answers[1].option;	
-	document.getElementById("answer3").innerHTML = questions[random].answers[2].option;	
-	document.getElementById("answer4").innerHTML = questions[random].answers[3].option;	
+	document.getElementById("1").innerHTML = questions[random].answers[0].option;
+	document.getElementById("2").innerHTML = questions[random].answers[1].option;	
+	document.getElementById("3").innerHTML = questions[random].answers[2].option;	
+	document.getElementById("4").innerHTML = questions[random].answers[3].option;	
+	
+	
+	for(var i = 0; i < 4; i++){
+		if(questions[random].answers[i].answer == true)
+		{
+			console.log("right answer is " + i);
+		}
+	}
+	console.log("you clicked " + (clicked_id - 1));
+	
+	counterscore();	
+	
+	
+	
 }
+
+	
+	/*var reply_click = function()
+	{
+		//console.log("Button clicked, id "+this.id+", text"+this.innerHTML);
+		//console.log(questions[random].answers[this.id-1].answer);
+	}
+	document.getElementById('1').onclick = reply_click;
+	document.getElementById('2').onclick = reply_click;
+	document.getElementById('3').onclick = reply_click;
+	document.getElementById('4').onclick = reply_click;*/
+	
 
 function counterscore(){
 	progress++;
@@ -371,7 +412,7 @@ let questions = [
        question: "Who is the first driver to break triple figures in amount of races won in F1?",
        answers: [
            {option: "Lewis Hamilton", answer: true},
-           {option: "Fernando Alons", answer: false},
+           {option: "Fernando Alonso", answer: false},
 		   {option: "Michael Schumacher", answer: false},
 		   {option: "Michael Fasbender", answer: false},
        ]

@@ -15,21 +15,21 @@
 		
 		<main id = "mainID">
 			
-			<button id = "buttonQuiz" onclick = "quiztimer();counterscore()">START</button>
+			<button id = "buttonQuiz" onclick = "quiztimer()">START</button>
 			
 			<div class ="quizHeader">
 				<div id = "timer"> </div>
-				<div id = "score"> </div>
+				<div id = "score"> <input id="limitOf" type="text" placeholder="Enter your name..."></div>
 				<div id = "questionnumber"> </div>		
 			</div>
 			
 			<div id = "question">Question presented here:</div>
 			
 			<ul id = "quizanswers">
-				<li id = "answer1" onclick = "quiztimer();counterscore()">Option 1 for answering the question</li>
-				<li id = "answer2" onclick = "quiztimer();counterscore()">Option 2 for answering the question</li>
-				<li id = "answer3" onclick = "quiztimer();counterscore()">Option 3 for answering the question</li>
-				<li id = "answer4" onclick = "quiztimer();counterscore()">Option 4 for answering the question</li>
+				<li id = "1" onclick = "quiztimer(this.id)">Option 1 for answering the question</li>
+				<li id = "2" onclick = "quiztimer(this.id)">Option 2 for answering the question</li>
+				<li id = "3" onclick = "quiztimer(this.id)">Option 3 for answering the question</li>
+				<li id = "4" onclick = "quiztimer(this.id)">Option 4 for answering the question</li>
 			</ul>
 			
 			
