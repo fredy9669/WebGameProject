@@ -110,7 +110,7 @@ nav {
 .mainHomepageText{
 	grid-row: 2;
 	grid-column: 2 / 4;
-	color: white;	
+	color: black;	
 }
 
 .flexContainer{
@@ -183,7 +183,7 @@ nav {
 	text-align: left;
 }
 
-#limitOf{
+#nameplayer{
 	text-align: center;
 	height: 25px;
 	width: 350px;
