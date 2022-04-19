@@ -37,6 +37,9 @@ var statusquiz = 0; //status 0 = no game is on; status 1 = game finished
 var progress = 1; 	//counter of which question are you at
 var timerrun = 0;	//status of counter, 1 = counter is running
 var timer = 25; 	//amount of seconds
+var score = 0;
+let scoreboard = [];
+let numberofplayers = 0;
 
 /* Main function, decides on what to do depending in which part of quiz we are */
 function quiztimer(clicked_id){
@@ -46,6 +49,14 @@ function quiztimer(clicked_id){
 		document.getElementById("buttonQuiz").innerHTML = "START";
 		clearInterval(int);
 		statusquiz = 0;
+		var nameplayersb = document.getElementById("nameplayer");
+		scoreboard.push([nameplayersb.value, score]);
+		numberofplayers = localStorage.length;
+		
+		localStorage.setItem(numberofplayers, nameplayersb.value);
+		localStorage.setItem(nameplayersb.value, score);		
+		
+		score = 0;
 		return;
 	}	
 	if(timerrun == 1){
@@ -102,6 +113,7 @@ function show(clicked_id){
 
 	if((clicked_id-1) == correctanswerID){
 		console.log("Right answer");
+		score++;
 	}
 	var random = Math.floor(Math.random() * limit);
 	
@@ -141,6 +153,23 @@ function show(clicked_id){
 function counterscore(){
 	progress++;
 }
+
+function scoreboardload(){
+	let lengthStorage = localStorage.length;
+	console.log(lengthStorage);
+	//console.log(localStorage.length);
+	for(let i = 0; i < lengthStorage; i++){
+		if(localStorage.getItem(i) != null)
+		console.log("player name is: " + localStorage.getItem(i) + " and score is: " + localStorage.getItem(localStorage.getItem(i)) );
+	}
+	
+}
+
+function clearscoreboard(){
+	localStorage.clear();
+	alert("You have cleared all the scoreboard")
+}
+
 
 /* List of all the questions */
 let questions = [

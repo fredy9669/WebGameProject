@@ -8,15 +8,16 @@
 		<script src = "quizJS.js"></script>
 	</head>
 	
-	<body id = "bodyID">
+	<body id = "bodyID" onload = "scoreboardload()">
 		<header id = "headerID">
-			Select practice or start quiz.
+			Scoreboard
 		</header>
 		
 		<main id = "mainID">
-			<p>
-				<img src = "wallpaper.jpg" alt = "Wallpaper" width = 800px>
-			</p>
+			<button id = "clearscoreboardbtn" onclick = "clearscoreboard()">CLEAR</button>
+			<div id = "scoreboardbody" >
+				pac
+			</div>
 		</main>
 		
 		<nav id = "drawer">
