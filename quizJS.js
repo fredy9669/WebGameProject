@@ -158,11 +158,14 @@ function scoreboardload(){
 	let lengthStorage = localStorage.length;
 	console.log(lengthStorage);
 	//console.log(localStorage.length);
+	let outputString = "Leaderboard" + " <br> ";
 	for(let i = 0; i < lengthStorage; i++){
 		if(localStorage.getItem(i) != null)
-		console.log("player name is: " + localStorage.getItem(i) + " and score is: " + localStorage.getItem(localStorage.getItem(i)) );
+		//console.log("player name is: " + localStorage.getItem(i) + " and score is: " + localStorage.getItem(localStorage.getItem(i)) );
+		//document.getElementById("scoreboardbody").innerHTML = "player name is: " + localStorage.getItem(0) + " and score is: " + localStorage.getItem(localStorage.getItem(0));
+		outputString += localStorage.getItem(i) + " - " + localStorage.getItem(localStorage.getItem(i)) + " <br> ";
 	}
-	
+	document.getElementById("scoreboardbody").innerHTML = outputString;
 }
 
 function clearscoreboard(){
