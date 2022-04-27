@@ -36,19 +36,28 @@ function hideSubmenu(){
 var statusquiz = 0; //status 0 = no game is on; status 1 = game finished
 var progress = 1; 	//counter of which question are you at
 var timerrun = 0;	//status of counter, 1 = counter is running
-var timer = 25; 	//amount of seconds
+var timer = 10; 	//amount of seconds
 var score = 0;
 let scoreboard = [];
 let numberofplayers = 0;
 
 /* Main function, decides on what to do depending in which part of quiz we are */
 function quiztimer(clicked_id){
-	console.log(statusquiz);
-
+	//console.log(statusquiz);
+	document.getElementById("question").style.fontSize = "30px";
+	document.getElementById("question").style.textAlign = "left";
+	
 	if(statusquiz == 1){
+		
+		
+		document.getElementById("quizanswers").style.visibility = "hidden";
+		document.getElementById("questionnumber").innerHTML = "";	
+		document.getElementById("timer").innerHTML = "";
+		
 		document.getElementById("buttonQuiz").innerHTML = "START";
 		clearInterval(int);
 		statusquiz = 0;
+		
 		var nameplayersb = document.getElementById("nameplayer");
 		scoreboard.push([nameplayersb.value, score]);
 		numberofplayers = localStorage.length;
@@ -56,14 +65,20 @@ function quiztimer(clicked_id){
 		localStorage.setItem(numberofplayers, nameplayersb.value);
 		localStorage.setItem(nameplayersb.value, score);		
 		
+		document.getElementById("question").innerHTML = nameplayersb.value + " you scored " + score + " points. <br>Press <b>START</b> to play again and put your name." ;
+		document.getElementById("question").style.fontSize = "40px";
+		document.getElementById("question").style.textAlign = "center";
+		
+		
 		score = 0;
+		document.getElementById("nameplayer").value = "";
 		return;
 	}	
 	if(timerrun == 1){
 		clearInterval(int);
-		timer = 25;
+		timer = 10;
 	}		
-	if(timer == 25){
+	if(timer == 10){
 		timerstart();
 		timerrun = 1;
 	}else{
@@ -112,7 +127,7 @@ var correctanswerID = 0;    //ID of the correct answer
 function show(clicked_id){
 
 	if((clicked_id-1) == correctanswerID){
-		console.log("Right answer");
+		//console.log("Right answer");
 		score++;
 	}
 	var random = Math.floor(Math.random() * limit);
@@ -156,13 +171,13 @@ function counterscore(){
 
 function scoreboardload(){
 	let lengthStorage = localStorage.length;
-	console.log(lengthStorage);
+	//console.log(lengthStorage);
 	//console.log(localStorage.length);
-	let outputString = "Leaderboard" + " <br> ";
+	
+	/* DISPLAY RESULTS */
+	let outputString = "Below is a list of players and their results. You can clear the list by button CLEAR above" + " <br> "+ " <br> ";
 	for(let i = 0; i < lengthStorage; i++){
 		if(localStorage.getItem(i) != null)
-		//console.log("player name is: " + localStorage.getItem(i) + " and score is: " + localStorage.getItem(localStorage.getItem(i)) );
-		//document.getElementById("scoreboardbody").innerHTML = "player name is: " + localStorage.getItem(0) + " and score is: " + localStorage.getItem(localStorage.getItem(0));
 		outputString += localStorage.getItem(i) + " - " + localStorage.getItem(localStorage.getItem(i)) + " <br> ";
 	}
 	document.getElementById("scoreboardbody").innerHTML = outputString;
@@ -170,7 +185,8 @@ function scoreboardload(){
 
 function clearscoreboard(){
 	localStorage.clear();
-	alert("You have cleared all the scoreboard")
+	alert("You have cleared all the scoreboard");
+	location.reload();
 }
 
 

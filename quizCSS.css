@@ -121,7 +121,7 @@ nav {
 
 .flexContainer a{
   flex-basis: 250px;
-  margin: 5px;
+  margin: 20px;
   height: 250px;  
   transition: 0.7s;
 }
@@ -139,7 +139,7 @@ nav {
 
 .flexContainer2 a{
   flex-basis: 250px; 
-  margin: 5px;
+  margin: 20px;
   height: 250px;  
   transition: 0.7s;
 }
@@ -161,7 +161,7 @@ nav {
 #mainID{
 	background-color: white;
 	display: inline;
-	padding: 5px;
+	padding: 10px;
 	margin: 5px;
 }
 
@@ -223,7 +223,7 @@ nav {
 #quizanswers li{
 	text-align: left;
 	list-style-type: upper-latin;
-	margin: 30px;
+	margin: 50px;
 	font-size: 25px;
 	cursor: pointer;
 	transition: 0.5s;
@@ -232,4 +232,19 @@ nav {
 #quizanswers li:hover{
 	transform: scale(1.05);
 	background-color: #DCDCDC;
+	
+}
+
+#clearscoreboardbtn{
+	color: white;
+	background-color: black;
+	font-size: 25px;
+	width: 200px;	
+	cursor: pointer;	
+	margin: 10px;
+}
+
+#clearscoreboardbtn:hover{
+	color: #f3f6f4;
+	background-color: #990000;
 }
