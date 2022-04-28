@@ -44,8 +44,7 @@ let scoreboard = [];
 let numberofplayers = 0;
 
 /* Main function, decides on what to do depending in which part of quiz we are */
-function quiztimer(clicked_id){
-	
+function quiztimer(clicked_id){	
 	document.getElementById("question").style.fontSize = "30px";
 	document.getElementById("question").style.textAlign = "left";
 		
@@ -74,6 +73,7 @@ function quiztimer(clicked_id){
 		
 		score = 0;
 		document.getElementById("nameplayer").value = "";
+		onloadFunction();
 		return;
 	}	
 	if(timerrun == 1){
@@ -198,6 +198,30 @@ function clearscoreboard(){
 	localStorage.clear();
 	alert("You have cleared all the scoreboard");
 	location.reload();
+}
+
+function enableStart(){
+	var nameplayerCheck = document.getElementById("nameplayer");
+	/*First checks if the name already exists in scoreboard*/
+	let lengthStorage = localStorage.length;
+	for(let i = 0; i < lengthStorage; i++){
+		if(localStorage.getItem(i) == nameplayerCheck.value)
+		{
+			alert("This username already exists. Select a different one.")
+			document.getElementById("nameplayer").value = "";
+			return;
+		}
+	}
+	
+	document.getElementById("buttonQuiz").disabled = false;
+	document.getElementById("buttonQuiz").style.cursor = "pointer";
+	document.getElementById("nameplayer").disabled = true;
+}
+
+function onloadFunction(){
+	document.getElementById("buttonQuiz").disabled = true;
+	document.getElementById("buttonQuiz").style.cursor = "not-allowed";
+	document.getElementById("nameplayer").disabled = false;
 }
 
 /*Long beep when run out of time*/

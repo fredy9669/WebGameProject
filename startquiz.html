@@ -8,7 +8,7 @@
 		<script src = "quizJS.js"></script>
 	</head>
 	
-	<body id = "bodyID">
+	<body id = "bodyID" onload = "onloadFunction()">
 		<header id = "headerID">
 			Welcome to the <b>QUIZ FOR SPEED</b>. Good luck and have fun!
 		</header>
@@ -19,7 +19,7 @@
 			
 			<div class ="quizHeader">
 				<div id = "timer"> </div>
-				<div id = "score"> <input id="nameplayer" type="text" placeholder="Enter your name..."></div>
+				<div id = "score"> <input id="nameplayer" type="text" onchange = "enableStart()" placeholder="Enter your name first and press ENTER..."></div>
 				<div id = "questionnumber"> </div>		
 			</div>
 			
