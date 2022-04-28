@@ -1,5 +1,6 @@
 var statusMenu = false;
 
+/* Menu animation */
 function showMenu(){
 	if(statusMenu == true){
 		document.getElementById('mainID').style.zIndex = "1";	
@@ -21,6 +22,7 @@ function showMenu(){
 	}	
 }	
 
+/* Submenu animation */
 function showSubmenu(){
 	document.getElementById('submenuID').style.width = "200px";
 	document.getElementById('submenuID').style.visibility = "visible";
@@ -36,14 +38,13 @@ function hideSubmenu(){
 var statusquiz = 0; //status 0 = no game is on; status 1 = game finished
 var progress = 1; 	//counter of which question are you at
 var timerrun = 0;	//status of counter, 1 = counter is running
-var timer = 10; 	//amount of seconds
+var timer = 15; 	//amount of seconds
 var score = 0;
 let scoreboard = [];
 let numberofplayers = 0;
 
 /* Main function, decides on what to do depending in which part of quiz we are */
 function quiztimer(clicked_id){
-	//console.log(statusquiz);
 	document.getElementById("question").style.fontSize = "30px";
 	document.getElementById("question").style.textAlign = "left";
 	
@@ -76,9 +77,9 @@ function quiztimer(clicked_id){
 	}	
 	if(timerrun == 1){
 		clearInterval(int);
-		timer = 10;
+		timer = 15;
 	}		
-	if(timer == 10){
+	if(timer == 15){
 		timerstart();
 		timerrun = 1;
 	}else{
@@ -169,11 +170,10 @@ function counterscore(){
 	progress++;
 }
 
+
+/* Onload page show scoreboard */
 function scoreboardload(){
 	let lengthStorage = localStorage.length;
-	//console.log(lengthStorage);
-	//console.log(localStorage.length);
-	
 	/* DISPLAY RESULTS */
 	let outputString = "Below is a list of players and their results. You can clear the list by button CLEAR above" + " <br> "+ " <br> ";
 	for(let i = 0; i < lengthStorage; i++){
@@ -183,6 +183,7 @@ function scoreboardload(){
 	document.getElementById("scoreboardbody").innerHTML = outputString;
 }
 
+/* Press button to clear */
 function clearscoreboard(){
 	localStorage.clear();
 	alert("You have cleared all the scoreboard");
