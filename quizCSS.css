@@ -62,7 +62,7 @@ nav {
 	color: #444444; 
 	display: none;
 	position: relative;
-}	
+}
 
 .menuItems a {
 	color: #444444; 
@@ -107,10 +107,15 @@ nav {
 	color: black;
 }
 
+
+
 .mainHomepageText{
 	grid-row: 2;
 	grid-column: 2 / 4;
-	color: black;	
+	color: black;
+	margin: 100px;
+	font-size: 25px;
+	
 }
 
 .flexContainer{
