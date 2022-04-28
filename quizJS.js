@@ -39,18 +39,19 @@ var statusquiz = 0; //status 0 = no game is on; status 1 = game finished
 var progress = 1; 	//counter of which question are you at
 var timerrun = 0;	//status of counter, 1 = counter is running
 var timer = 15; 	//amount of seconds
-var score = 0;
+var score = 0;		//players score
 let scoreboard = [];
 let numberofplayers = 0;
 
 /* Main function, decides on what to do depending in which part of quiz we are */
 function quiztimer(clicked_id){
+	
 	document.getElementById("question").style.fontSize = "30px";
 	document.getElementById("question").style.textAlign = "left";
-	
+		
+	/*Means quiz is finished*/	
 	if(statusquiz == 1){
-		
-		
+	
 		document.getElementById("quizanswers").style.visibility = "hidden";
 		document.getElementById("questionnumber").innerHTML = "";	
 		document.getElementById("timer").innerHTML = "";
@@ -79,12 +80,14 @@ function quiztimer(clicked_id){
 		clearInterval(int);
 		timer = 15;
 	}		
+	/*Timer handler*/
 	if(timer == 15){
 		timerstart();
 		timerrun = 1;
 	}else{
 		clearInterval(int);
 	}
+	
 	
 	if(statusquiz == 0){
 		document.getElementById("buttonQuiz").innerHTML = "NEXT";
@@ -94,6 +97,7 @@ function quiztimer(clicked_id){
 
 	document.getElementById("questionnumber").innerHTML = progress;	
 	
+	/*Last question handle*/
 	if(progress >= 10){
 		document.getElementById("buttonQuiz").innerHTML = "FINISH";
 		statusquiz = 1;	
@@ -111,9 +115,15 @@ function timerstart(){
 	int = setInterval(function(){ 
 		if(0 < timer){
 			document.getElementById("timer").innerHTML = timer + " s";
+			//Play beep sound
+			if(timer == 5 || timer == 4 || timer == 3 || timer == 2 || timer == 1){
+				beep();
+			}
 			timer--;
 		}else{
+			//Play long beep sound
 			document.getElementById("timer").innerHTML = "TIMEUP";	
+			beepLong();
 			quiztimer();
 		}
 	}, 1000);
@@ -124,21 +134,21 @@ let questionsasked = []; 	//list of questions already asked
 let limit = 62; 			//amount of questions
 var correctanswerID = 0;    //ID of the correct answer
 
+
 /* Main function to show the questions */
 function show(clicked_id){
-
+	/* Checks if answer is correct or not */
 	if((clicked_id-1) == correctanswerID){
-		//console.log("Right answer");
 		score++;
 	}
+
+	/*Random number to select question*/
 	var random = Math.floor(Math.random() * limit);
-	
-
-
 	if(questionsasked.length == limit){
 		return;
 	}
 	
+	/*Checks if the question has been asked before. If so repeat.*/
 	if(questionsasked.includes(random)){
 		show();
 		return;;
@@ -146,6 +156,7 @@ function show(clicked_id){
 		questionsasked.push(random);
 	}
 
+	/*Fill the question and options.*/
 	document.getElementById("question").innerHTML = questions[random].question;
 	document.getElementById("1").innerHTML = questions[random].answers[0].option;
 	document.getElementById("2").innerHTML = questions[random].answers[1].option;	
@@ -153,12 +164,11 @@ function show(clicked_id){
 	document.getElementById("4").innerHTML = questions[random].answers[3].option;	
 	
 
-	
+	/*Finds correct id of right answer*/
 	for(var i = 0; i < 4; i++){
 	if(questions[random].answers[i].answer == true)
 		{
 			correctanswerID = i;
-			//console.log(i);
 		}
 	}
 	
@@ -190,6 +200,33 @@ function clearscoreboard(){
 	location.reload();
 }
 
+/*Long beep when run out of time*/
+function beep(){
+	var context = new AudioContext();
+	var oscillator = context.createOscillator();
+	oscillator.type = "sine";
+	oscillator.frequency.value = 800;
+	oscillator.connect(context.destination);
+	oscillator.start(); 
+	// Beep for 100 milliseconds
+	setTimeout(function () {
+    oscillator.stop();
+	}, 100); 
+}
+
+/*Short beep for 5-1 seconds*/
+function beepLong(){
+	var context = new AudioContext();
+	var oscillator = context.createOscillator();
+	oscillator.type = "sine";
+	oscillator.frequency.value = 800;
+	oscillator.connect(context.destination);
+	oscillator.start(); 
+	// Beep for 500 milliseconds
+	setTimeout(function () {
+    oscillator.stop();
+	}, 500); 
+}
 
 /* List of all the questions */
 let questions = [
